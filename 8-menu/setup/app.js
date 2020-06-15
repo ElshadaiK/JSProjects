@@ -72,3 +72,38 @@ const menu = [
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
+const sectionCenter = document.querySelector('.section-center');
+window.addEventListener('DOMContentLoaded', function(){
+  menu.forEach(function(item){
+    newItemArticle = document.createElement('article');
+    newItemArticle.classList = 'menu-item';
+
+    newItemImage = document.createElement('img');
+    newItemImage.src = item.img;
+    newItemImage.classList = 'photo'
+
+
+    newItemDiv = document.createElement('div');
+    newItemDiv.classList = 'item-info';
+
+    newItemHeader = document.createElement('header');
+    newItemHeading = document.createElement('h4');
+    newItemHeading.textContent = item.title;
+    newItemPrice = document.createElement('h4');
+    newItemPrice.classList = 'price';
+    newItemPrice.textContent = '$'+item.price;
+    newItemHeader.appendChild(newItemHeading);
+    newItemHeader.appendChild(newItemPrice);
+
+    newItemParagraph = document.createElement('p');
+    newItemParagraph.classList = 'item-text';
+    newItemParagraph.textContent = item.desc;
+
+    newItemDiv.appendChild(newItemHeader);
+    newItemDiv.appendChild(newItemParagraph);
+
+    newItemArticle.appendChild(newItemImage);
+    newItemArticle.appendChild(newItemDiv)
+    sectionCenter.appendChild(newItemArticle);
+  })
+})
