@@ -74,7 +74,11 @@ const menu = [
 ];
 const sectionCenter = document.querySelector('.section-center');
 window.addEventListener('DOMContentLoaded', function(){
-  menu.forEach(function(item){
+displayItems(menu)
+});
+function displayItems(menuItems){
+  sectionCenter.innerHTML = '';
+  menuItems.forEach(function(item){
     newItemArticle = document.createElement('article');
     newItemArticle.classList = 'menu-item';
 
@@ -105,5 +109,22 @@ window.addEventListener('DOMContentLoaded', function(){
     newItemArticle.appendChild(newItemImage);
     newItemArticle.appendChild(newItemDiv)
     sectionCenter.appendChild(newItemArticle);
+  })
+}
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(function(btn){
+  btn.addEventListener('click', function(event){
+    const category = event.currentTarget.textContent;
+    const menuCategory = menu.filter(function(menuItem){
+      if(menuItem.category === category){
+        return menuItem;
+      }
+    });
+    if(category === 'all'){
+      displayItems(menu)
+    }
+    else{
+    displayItems(menuCategory);
+    }
   })
 })
