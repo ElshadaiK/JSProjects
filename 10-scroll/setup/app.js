@@ -40,3 +40,35 @@ window.addEventListener('scroll', function(){
 })
 // ********** smooth scroll ************
 // select links
+const scrollLinks = document.querySelectorAll('.scroll-link');
+scrollLinks.forEach(function(link){
+    link.addEventListener('click', function(e){
+        e.preventDefault();
+        // navigate to specific spot
+        const id = e.currentTarget.getAttribute('href').slice(1);
+        // console.log(id);
+        const element = document.getElementById(id);
+        // console.log(position);
+        const navHeight = navbar.getBoundingClientRect().height;
+        // const containerHeight = linksContainer.getBoundingClientRect().height;
+        const fixedNav = navbar.classList.contains('fixed-nav');
+        let position = element.offsetTop - navHeight;
+        if(fixedNav){
+            window.scrollTo(
+                {
+                    left:0,
+                    top:position,             
+                }
+            );
+        }
+        else{
+            window.scrollTo(
+                {
+                    left:0,
+                    top:position-navHeight,             
+                }
+            );
+        }
+        linksContainer.style.height = 0;
+    });
+});
